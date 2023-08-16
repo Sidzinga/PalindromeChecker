@@ -3,17 +3,18 @@ function rearrangePalindrome(str){
 
 
 
-let capCheck = []
-let short = str.toLowerCase().replaceAll(/\W/g,'')
-let split = short.split('')
+let capCheck = [] // Used to store capital letters for case sensitive palindrome checker
+let short = str.toLowerCase().replaceAll(/\W|_/g,'') 
+let split = short.split('') //Splits filtered string so that for loops may loop through each letter
 
-let rearrange = split.sort()
-let index = []
-let difference = []
-let i
-let confirmation =[]
-let splitStr = str.split('')
-let last
+let rearrange = split.sort() // Sorted array of Split letters
+let index = []  // Index for sorted array of letters added by 1
+let count = []  //Count for each letter 
+
+let i // Used for indexing in each for loop
+let confirmation =[] // Stores values representing the count of odd letters
+let splitStr = str.split('') // Used to split string to array, to check for capital letters in case sensitive palindrome checker
+let last // Pushed from for loop to index
 
 // Checking for capital letters first
 
@@ -35,17 +36,17 @@ let last
 for( i =0;i<rearrange.length;i++){
 
 if(rearrange[i]!== rearrange[i-1]){
-    last = (rearrange.lastIndexOf(rearrange[i])).valueOf()
+    last = (rearrange.lastIndexOf(rearrange[i])).valueOf() + 1
   
 index.push(last)
 
 } 
  
 } 
-
+count.push(index[0])
 for(i = index.length - 1;i > 0; i--){
 let x = (index[i] - index[i-1]).valueOf()
-difference.push(x);
+count.push(x);
 
 
  }
@@ -53,35 +54,46 @@ difference.push(x);
 
 
 
- for(i = 0;i<difference.length;i++ ){
-   if(difference[i] % 2 !== 0){
-confirmation.push(difference[i])
+ for(i = 0;i<count.length;i++ ){
+   if(count[i] % 2 !== 0){
+confirmation.push(count[i])
    } 
  }
  
-//  console.log(difference)
- 
-// console.log(confirmation)
-// console.log(confirmation.length)
+ console.log(count)
+ console.log(index)
+console.log(confirmation)
+console.log(confirmation.length)
 
-// console.log(rearrange)
+console.log(rearrange)
 
+
+
+
+
+
+
+
+let result
 if (confirmation.length == 1 || confirmation.length == 0){
    // return console.log("This string can be rearanged to a palindrome")
-   return confirmation.length == 1 || confirmation.length == 0
+   result = confirmation.length == 1 || confirmation.length == 0
 }
 else if (confirmation.length > 1 && confirmation.length !== 0){
    // return console.log("This string cannot be rearranged to a palindrome")
-   return (confirmation.length == 1 || confirmation.length == 0)
-}
- 
-
+   result = (confirmation.length == 1 || confirmation.length == 0)
 }
 
+if(index[0] % 2 !== 0 && index){}
+console.log(result)
+ return result
+
+}
 
 
 
 
 
-rearrangePalindrome("Was it a car or a cat I saw?")
-console.log(rearrangePalindrome("Was it a car or a cat I saw?"))
+
+
+rearrangePalindrome("")
